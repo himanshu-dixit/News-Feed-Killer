@@ -1,0 +1,55 @@
+{
+  "name": "Feed Killer",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Feed Killer kills your Youtube,Facebook & Twitter Feed so that you can focus on your work.",
+  "homepage_url": "http://chrome.google.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "src/bg/background.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "browser action demo",
+    "default_popup": "src/browser_action/browser_action.html"
+  },
+  "permissions": [
+    "https://*/*,http://*/* "
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.youtube.com/*"
+      ],
+     "js": ["js/jquery/jquery.js",
+          "src/inject/youtube.js"
+        ]
+    },
+
+    {
+        "matches": [
+          "https://*.twitter.com/"
+        ],
+       "js": ["js/jquery/jquery.js",
+            "src/inject/twitter.js"
+          ]
+      }
+      ,
+    {
+      "matches": [
+        "https://*.facebook.com/*"
+      ],
+      "js": ["js/jquery/jquery.js",
+        "src/inject/facebook.js"
+      ]
+    }
+  ]
+}
